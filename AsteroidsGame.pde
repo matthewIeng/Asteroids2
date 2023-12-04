@@ -1,3 +1,4 @@
+ArrayList <Asteroid> belt = new ArrayList <Asteroid>();
 Spaceship bob = new Spaceship(); 
 Star[] starryNight = new Star[100];
 boolean w = false;
@@ -10,6 +11,9 @@ public void setup()
   size(500,500);
   for(int i = 0; i < starryNight.length; i++)
   starryNight[i] = new Star();
+
+for(int i = 0; i < 6; i++)
+belt.add(new Asteroid());
 }
 public void draw() 
 {
@@ -27,6 +31,14 @@ public void draw()
     s = false; }
   for(int i = 0; i < starryNight.length; i++)
   starryNight[i].show();
+  for(int i = 0; i < belt.size(); i++){
+  belt.get(i).move();
+  belt.get(i).show();
+  float d = dist((float)(bob.getX()), (float)(bob.getY()), (float)(belt.get(i).getmyCenterX()), (float)(belt.get(i).getmyCenterY()));
+    if (d < 20){
+      belt.remove(i);
+}
+  }
 }
 
 public void keyPressed() 
